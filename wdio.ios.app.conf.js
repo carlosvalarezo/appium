@@ -9,28 +9,24 @@ exports.config = {
     specs: [
         './__tests__/specs/**/*.js',
     ],
-
     reporters: ['dot','allure'],
     reporterOptions: {
         allure: {
             outputDir: './allure-results/'
         }
     },
-
     host: host,
     port: port,
-
     maxInstances: 1,
-
     capabilities: [
         {
-            appiumVersion: '1.8.1',                 // Appium module version
-            browserName: '',                        // browser name is empty for native apps
+            appiumVersion: '1.8.1',                 // appium version
+            browserName: '',                        // browser name is empty for mobile apps
             platformName: 'iOS',
-            app: '/Users/cvalarezo/Documents/developer/picky-eaters/picky-eaters-app/ios/build/Build/Products/Debug-iphonesimulator/pickyEatersApp.app',          // Path to your native app
-            appPackage: 'org.nyumc.pickyeater',  // Package name of your app
-            platformVersion: '11.4',              // Android platform version of the device
-            deviceName: 'iPhone X',              // device name of the mobile device
+            app: '',          			   // path to your mobile app
+            appPackage: '',                        // package name of your app
+            platformVersion: '11.4',              // iOS platform version
+            deviceName: 'iPhone X',              // device name of the mobile simulator
             waitforTimeout: waitforTimeout,
             commandTimeout: commandTimeout,
             newCommandTimeout: 30 * 60000,
