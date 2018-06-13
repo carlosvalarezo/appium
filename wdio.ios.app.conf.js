@@ -66,11 +66,11 @@ exports.config = {
      * of the project.
      */
     onPrepare: function (config, capacbilities) {
-        console.log('<<< NATIVE APP TESTS STARTED >>>');
+        console.log('Test started');
     },
 
     onComplete: function () {
-        console.log('<<< TESTING FINISHED >>>');
+        console.log('Test finished');
     }
 
 };
