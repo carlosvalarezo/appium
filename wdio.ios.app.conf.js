@@ -23,8 +23,8 @@ exports.config = {
             appiumVersion: '1.8.1',                 // appium version
             browserName: '',                        // browser name is empty for mobile apps
             platformName: 'iOS',
-            app: '',          			   // path to your mobile app
-            appPackage: '',                        // package name of your app
+            app: '/Users/cvalarezo/Documents/developer/picky-eaters/picky-eaters-app/ios/build/Build/Products/Debug-iphonesimulator/pickyEatersApp.app',          			   // path to your mobile app
+            appPackage: 'org.nyumc.pickyeater',                        // package name of your app
             platformVersion: '11.4',              // iOS platform version
             deviceName: 'iPhone X',              // device name of the mobile simulator
             waitforTimeout: waitforTimeout,
