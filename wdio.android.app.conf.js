@@ -9,11 +9,17 @@ exports.config = {
     specs: [
         './__tests__/specs/**/*.js',
     ],
-    reporters: ['dot','allure'],
+    reporters: ['spec','mochawesome'],
     reporterOptions: {
         allure: {
-            outputDir: './allure-results/'
-        }
+            outputDir: './allure-results/',
+            includeScreenshots : true
+        },
+	mochawesome: {
+	    outputDir: './mochawesome-results',
+	    mochawesome_filename: 'myFile.json',
+            includeScreenshots : true
+	}
     },
     host: host,
     port: port,
@@ -23,9 +29,9 @@ exports.config = {
             appiumVersion: '1.8.1',                 // appium version
             browserName: '',                        // browser name is empty for mobile apps
             platformName: 'Android',
-            app: '/Users/carlos-valarezo-loaiza/Documents/developer/nyu/picky-eaters-app/android/app/build/outputs/apk/app-debug.apk',          			   // path to your mobile app
+            app: '/Users/cvalarezo/Documents/developer/picky-eaters/picky-eaters-app/android/app/build/outputs/apk/app-debug.apk',          			   // path to your mobile app
             appPackage: 'com.pickyeatersapp',                        // package name of your app
-            platformVersion: '7.0',              // iOS platform version
+            platformVersion: '7.0',              // platform version
             deviceName: 'emulator-5554',              // device name of the mobile simulator
             waitforTimeout: waitforTimeout,
             commandTimeout: commandTimeout,
@@ -55,7 +61,8 @@ exports.config = {
     coloredLogs: true,
     framework: 'mocha',          // mocha framework specified
     suites: {
-        startApp: ['./__tests__/specs/startApp/start.spec.js']
+        startApp: ['./__tests__/specs/startApp/start.spec.js'],
+	registrationProcess: ['./__tests__/specs/registrationProcess/**.js']
     }, 
     mochaOpts: {
 	ui: 'bdd',

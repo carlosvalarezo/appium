@@ -4,18 +4,29 @@
   "description": "",
   "dependencies": {},
   "devDependencies": {
+    "allure-commandline": "^2.5.0",
     "appium": "^1.8.1",
     "assert": "^1.4.1",
+    "chai": "^4.1.2",
+    "chai-string": "^1.4.0",
+    "chai-webdriverio": "^0.4.3",
     "mocha": "^5.2.0",
+    "mochawesome-report-generator": "2.3.2",
+    "randomstring": "^1.1.5",
     "wdio": "^2.0.2",
     "wdio-allure-reporter": "^0.6.2",
     "wdio-appium-service": "^0.2.3",
     "wdio-mocha-framework": "^0.5.13",
+    "wdio-mochawesome-reporter": "^1.3.0",
+    "wdio-spec-reporter": "^0.1.4",
+    "wdio-teamcity-reporter": "^1.1.1",
     "webdriverio": "^4.12.0"
   },
   "scripts": {
     "testios": "./node_modules/.bin/wdio wdio.ios.app.conf.js",
-    "test": "./node_modules/.bin/wdio wdio.android.app.conf.js"
+    "testandroid": "./node_modules/.bin/wdio wdio.android.app.conf.js",
+    "generateMochawesome": "marge ./mochawesome-results/myFile.json --reportTitle 'Picky Eaters Functional Testing Results'",
+    "generateAllureReport": "./node_modules/allure-commandline/bin/allure generate --clean ./allure-results"
   },
   "author": "",
   "license": "ISC"
