@@ -2,7 +2,8 @@
   "name": "picky-eaters-test",
   "version": "1.0.0",
   "description": "",
-  "dependencies": {},
+  "dependencies": {
+  },
   "devDependencies": {
     "allure-commandline": "^2.5.0",
     "appium": "^1.8.1",
@@ -10,6 +11,7 @@
     "chai": "^4.1.2",
     "chai-string": "^1.4.0",
     "chai-webdriverio": "^0.4.3",
+    "faker": "^4.1.0",
     "mocha": "^5.2.0",
     "mochawesome-report-generator": "2.3.2",
     "randomstring": "^1.1.5",
