@@ -7,7 +7,7 @@ const commandTimeout = 30 * 60000;
 exports.config = {
     debug: false,
     specs: [
-        './__tests__/specs/**/*.js',
+        './__tests__/specs/startApp/**.js',
     ],
     reporters: ['spec','mochawesome'],
     reporterOptions: {
@@ -61,8 +61,8 @@ exports.config = {
     coloredLogs: true,
     framework: 'mocha',          // mocha framework specified
     suites: {
-        startApp: ['./__tests__/specs/startApp/start.spec.js'],
-	registrationProcess: ['./__tests__/specs/registrationProcess/**.js']
+        startApp: ['./__tests__/specs/startApp/start.spec.js']
+	//registrationProcess: ['./__tests__/specs/registrationProcess/**.js']
     }, 
     mochaOpts: {
 	ui: 'bdd',

@@ -6,12 +6,19 @@ const waitforStart = 60 * 60000;
 const commandTimeout = 30 * 60000;
 
 const platform = process.env.npm_config_platform;
-console.log("Tests on...", platform)
+const startingTime = new Date();
+
+const iosApp = '/Users/cvalarezo/Documents/developer/picky-eaters/picky-eaters-app/ios/build/Build/Products/Debug-iphonesimulator/pickyEatersApp.app';
+const androidApp = '/Users/cvalarezo/Documents/developer/picky-eaters/picky-eaters-app/android/app/build/outputs/apk/app-debug.apk';
+
+var calculateTimeOfTesting = (currentTime) => {
+	return (Math.round((currentTime - startingTime) / 1000)) / 60; 
+}
 
 exports.config = {
-    debug: false,
+    debug: true,
     specs: [
-        './__tests__/specs/**/*.js',
+       './__tests__/specs/**/*.js',
     ],
     reporters: ['spec','allure'],
     reporterOptions: {
@@ -32,16 +39,17 @@ exports.config = {
         {
             appiumVersion: '1.8.1',                 // appium version
             browserName: '',                        // browser name is empty for mobile apps
-            platformName: 'iOS',
-            app: '/Users/cvalarezo/Documents/developer/picky-eaters/picky-eaters-app/ios/build/Build/Products/Debug-iphonesimulator/pickyEatersApp.app',          			   // path to your mobile app
-            appPackage: 'org.nyumc.pickyeater',                        // package name of your app
-            platformVersion: '11.4',              // iOS platform version
-            deviceName: 'iPhone X',              // device name of the mobile simulator
+            platformName: platform,
+            app: platform === 'iOS' ? iosApp : androidApp,          			   // path to your mobile app
+            appPackage: platform === 'iOS' ? 'org.nyumc.pickyeater' : 'com.pickyeatersapp',                        // package name of your app
+            platformVersion: platform === 'iOS' ? '11.4' : '7.0' ,              // iOS platform version
+            deviceName: platform === 'iOS' ? 'iPhone X' : 'emulator-5554',              // device name of the mobile simulator
             waitforTimeout: waitforTimeout,
             commandTimeout: commandTimeout,
             newCommandTimeout: 0,
 	    noReset: true,
-            automationName: 'XCUITest'
+	    fullReset: false,
+	    automationName: platform === 'iOS' ? 'XCUITest' : 'UiAutomator2'           
         }
     ],
 
@@ -67,12 +75,12 @@ exports.config = {
     coloredLogs: true,
     framework: 'mocha',          // mocha framework specified
     suites: {
-        startApp: ['./__tests__/specs/startApp/**.js'],
-        registrationProcess: ['./__tests__/specs/registrationProcess/**.js --platform'+platform]
-        
+        startApp: ['./__tests__/specs/00startApp/**.js'],
+        registrationProcess: ['./__tests__/specs/01registrationProcess/**.js --platform'+platform]
     }, 
     mochaOpts: {
 	ui: 'bdd',
+	timeout: 20000
     },
 
     /**
@@ -80,11 +88,12 @@ exports.config = {
      * of the project.
      */
     onPrepare: function (config, capacbilities) {
-        console.log('Test started');
+        console.log('Test started on ', platform, ' at ', startingTime);
     },
 
     onComplete: function () {
-        console.log('Test finished');
+        console.log('Test finished on ', platform);
+	console.log('Time elapsed on testing', calculateTimeOfTesting(Date.now()), ' minutes');
     }
 
 };

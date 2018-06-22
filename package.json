@@ -25,6 +25,7 @@
     "webdriverio": "^4.12.0"
   },
   "scripts": {
+    "testapp": "./node_modules/.bin/wdio wdio.app.conf.js",
     "testios": "./node_modules/.bin/wdio wdio.ios.app.conf.js",
     "testandroid": "./node_modules/.bin/wdio wdio.android.app.conf.js",
     "generateMochawesome": "marge ./mochawesome-results/myFile.json --reportTitle 'Picky Eaters Functional Testing Results'",
