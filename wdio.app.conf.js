@@ -6,10 +6,16 @@ const waitforStart = 60 * 60000;
 const commandTimeout = 30 * 60000;
 
 const platform = process.env.npm_config_platform;
+const device = process.env.npm_config_device;
 const startingTime = new Date();
 
-const iosApp = '/Users/cvalarezo/Documents/developer/picky-eaters/picky-eaters-app/ios/build/Build/Products/Debug-iphonesimulator/pickyEatersApp.app';
-const androidApp = '/Users/cvalarezo/Documents/developer/picky-eaters/picky-eaters-app/android/app/build/outputs/apk/app-debug.apk';
+const iosAppValid = '/Users/cvalarezo/Documents/developer/picky-eaters/picky-eaters-app/ios/build/Build/Products/Debug-iphonesimulator/pickyEatersApp.app';
+const androidAppValid = '/Users/cvalarezo/Documents/developer/picky-eaters/picky-eaters-app/android/app/build/outputs/apk/app-debug.apk';
+
+
+const iosApp = '/Users/carlos-valarezo-loaiza/Documents/developer/nyu/picky-eaters-app/ios/build/Build/Products/Debug-iphonesimulator/pickyEatersApp.app';
+
+const androidApp = '/Users/carlos-valarezo-loaiza/Documents/developer/nyu/picky-eaters-app/android/app/build/outputs/apk/app-debug.apk';
 
 var calculateTimeOfTesting = (currentTime) => {
 	return (Math.round((currentTime - startingTime) / 1000)) / 60; 
@@ -43,8 +49,9 @@ exports.config = {
             app: platform === 'iOS' ? iosApp : androidApp,          			   // path to your mobile app
             appPackage: platform === 'iOS' ? 'org.nyumc.pickyeater' : 'com.pickyeatersapp',                        // package name of your app
             platformVersion: platform === 'iOS' ? '11.4' : '7.0' ,              // iOS platform version
-            deviceName: platform === 'iOS' ? 'iPhone X' : 'emulator-5554',              // device name of the mobile simulator
-            waitforTimeout: waitforTimeout,
+            //deviceName: platform === 'iOS' ? 'iPhone X' : 'emulator-5554',              // device name of the mobile simulator
+            deviceName: device,
+	    waitforTimeout: waitforTimeout,
             commandTimeout: commandTimeout,
             newCommandTimeout: 0,
 	    noReset: true,
@@ -76,7 +83,7 @@ exports.config = {
     framework: 'mocha',          // mocha framework specified
     suites: {
         startApp: ['./__tests__/specs/00startApp/**.js'],
-        registrationProcess: ['./__tests__/specs/01registrationProcess/**.js --platform'+platform]
+        registrationProcess: ['./__tests__/specs/01registrationProcess/**.js']
     }, 
     mochaOpts: {
 	ui: 'bdd',
