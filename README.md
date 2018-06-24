@@ -11,3 +11,7 @@ Change the **wdio.ios.app.config.js** file according to your needs
 ```
 appium
 wdio 
+
+```
+npm run --platform="android" --device="emulator-5554" testapp
+npm run --platform="iOS" --device="iPhone X" testapp
