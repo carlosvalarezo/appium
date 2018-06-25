@@ -1,9 +1,12 @@
+const devices = require ('../../../devices/devices');
 const chai = require('chai');
 const chaiWebdriver = require('chai-webdriverio').default;
 const platform = process.env.npm_config_platform;
-const device = process.env.npm_config_device;
+const device = devices.filter(device => device.name === process.env.npm_config_device);
 const save = require('save-file');
 
+
+console.log('device...', device);
 chai.use(chaiWebdriver(browser));
 
 var screenshotNumber = -1;
@@ -24,8 +27,8 @@ const getScreenshotNumber = () => {
 const swipeAndTakeScreenshotAndroid = () => {
 	takeScreenshot();
 	browser.touchAction([
-                        {action: 'press', x: 979, y: 151},
-                        {action: 'moveTo', x: 10, y: 151},
+                        {action: 'press', x: 600, y: 200},
+                        {action: 'moveTo', x: 5, y: 200},
                         'release'
                 ]);
 }
@@ -35,9 +38,10 @@ const swipeAndTakeScreenshotiOS = () => {
 	browser.execute('mobile: swipe', {direction: 'left'});
 }
 
-const clickButtoniOS = () => {
+const clickButtoniOS = (device) => {
+	console.log("buttons...", device[0]);
 	browser.touchAction({
-        	action: 'tap', x: 181, y:743		
+        	action: 'tap', x: device[0].buttons[0].x, y:device[0].buttons[0].y		
     	});
 }
 
@@ -71,7 +75,7 @@ describe('start the app', function() {
 
 	it('should take the user to the taskLaunch screen', function() {
            let element = browser.element('~aboutStartButton');
-	   platform ==='iOS' ? clickButtoniOS() : element.click();
+	   platform ==='iOS' ? clickButtoniOS(device) : element.click();
 	   browser.waitForVisible('~taskLaunchView', 9900);
 	   if (browser.isVisible('~taskLaunchView')) { takeScreenshot(); }
            chai.expect('~taskLaunchView').to.be.visible();		

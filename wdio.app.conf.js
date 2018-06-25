@@ -9,13 +9,8 @@ const platform = process.env.npm_config_platform;
 const device = process.env.npm_config_device;
 const startingTime = new Date();
 
-const iosAppValid = '/Users/cvalarezo/Documents/developer/picky-eaters/picky-eaters-app/ios/build/Build/Products/Debug-iphonesimulator/pickyEatersApp.app';
-const androidAppValid = '/Users/cvalarezo/Documents/developer/picky-eaters/picky-eaters-app/android/app/build/outputs/apk/app-debug.apk';
-
-
-const iosApp = '/Users/carlos-valarezo-loaiza/Documents/developer/nyu/picky-eaters-app/ios/build/Build/Products/Debug-iphonesimulator/pickyEatersApp.app';
-
-const androidApp = '/Users/carlos-valarezo-loaiza/Documents/developer/nyu/picky-eaters-app/android/app/build/outputs/apk/app-debug.apk';
+const iosApp = '/Users/cvalarezo/Documents/developer/picky-eaters/picky-eaters-app/ios/build/Build/Products/Debug-iphonesimulator/pickyEatersApp.app';
+const androidApp = '/Users/cvalarezo/Documents/developer/picky-eaters/picky-eaters-app/android/app/build/outputs/apk/app-debug.apk';
 
 var calculateTimeOfTesting = (currentTime) => {
 	return (Math.round((currentTime - startingTime) / 1000)) / 60; 
@@ -34,7 +29,7 @@ exports.config = {
         },
         mochawesome: {
             outputDir: './mochawesome-results',
-            mochawesome_filename: 'myFile.json',
+            mochawesome_filename: 'mochareport.json',
             includeScreenshots : true
         }
     },
