@@ -13,5 +13,8 @@ appium
 wdio 
 
 ```
+```
 npm run --platform="android" --device="emulator-5554" testapp
 npm run --platform="iOS" --device="iPhone X" testapp
+
+```
